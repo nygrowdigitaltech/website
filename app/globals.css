@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* LIGHT MODE (default) */
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8FAFC;
+    --bg-tertiary: #F1F5F9;
+
+    --fg-primary: #0A0D16;
+    --fg-secondary: #1F2937;
+    --fg-tertiary: #4B5563;
+    --fg-muted: #9CA3AF;
+
+    --border: rgba(0, 0, 0, 0.08);
+    --border-subtle: rgba(0, 0, 0, 0.04);
+
+    --brand: #16A34A;
+    --brand-hover: #15803D;
+  }
+
+  /* DARK MODE */
+  .dark {
+    --bg-primary: #000000;
+    --bg-secondary: #0A0D16;
+    --bg-tertiary: #12141F;
+
+    --fg-primary: #FFFFFF;
+    --fg-secondary: #EEF0F4;
+    --fg-tertiary: #D9DDE5;
+    --fg-muted: #9CA3AF;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+
+    --brand: #22C55E;
+    --brand-hover: #16A34A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--fg-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: var(--brand);
+    color: white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--fg-muted);
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Glass cards — theme-aware */
+  .glass {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .glass-strong {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+  .dark .glass-strong {
+    background: rgba(10, 13, 22, 0.95);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Primary CTA — solid green */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all;
+    background: var(--brand);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(22, 163, 74, 0.3);
+  }
+
+  /* Secondary outlined CTA */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all;
+    background: transparent;
+    color: var(--fg-primary);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover {
+    border-color: var(--fg-primary);
+    transform: translateY(-1px);
+  }
+
+  /* Rainbow gradient text (Digital word) */
+  .text-rainbow {
+    background: linear-gradient(
+      90deg,
+      #16A34A 0%,
+      #FBBF24 20%,
+      #F97316 40%,
+      #EF4444 60%,
+      #A78BFA 80%,
+      #60A5FA 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+  }
+
+  /* Brand chip / pill */
+  .chip {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium;
+    background: rgba(22, 163, 74, 0.08);
+    color: var(--brand);
+    border: 1px solid rgba(22, 163, 74, 0.2);
+  }
+  .dark .chip {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ADE80;
+  }
+
+  .chip-dot {
+    @apply w-2 h-2 rounded-full bg-brand-600;
+  }
+
+  /* Stat card (right side of hero) */
+  .stat-card {
+    @apply rounded-2xl px-6 py-5;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+  .dark .stat-card {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Section heading helpers — Inter Tight for tight, LateShipment-style display */
+  .heading-display {
+    font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--fg-primary);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  /* Ambient soft blob backgrounds */
+  .ambient-glow-green {
+    background: radial-gradient(circle, rgba(22, 163, 74, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  .ambient-glow-blue {
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.12) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  .ambient-glow-orange {
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+}
