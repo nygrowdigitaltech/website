@@ -19,8 +19,22 @@ const RESOURCES = [
 ];
 
 const PARTNER_LINKS = [
-  { title: "Zoho Authorised Partner", description: "CRM setup, customization & automation", href: "/services/zoho", badge: "Authorized" },
-  { title: "Odoo Partner", description: "End-to-end Odoo ERP implementation", href: "/services/odoo", badge: "Certified" },
+  {
+    title: "Zoho Authorised Partner",
+    description: "CRM setup, customization & automation",
+    href: "/services/zoho",
+    badge: "Authorized",
+    logo: "/logos/zoho-logo.svg",
+    logoInverted: "/logos/zoho-logo-inverted.svg",
+  },
+  {
+    title: "Odoo Partner",
+    description: "End-to-end Odoo ERP implementation",
+    href: "/services/odoo",
+    badge: "Certified",
+    logo: "/logos/odoo-logo.png",
+    logoInverted: "/logos/odoo-logo-inverted.png",
+  },
   { title: "Become a Partner", description: "Join our agency partner program", href: "/contact" },
 ];
 
@@ -203,6 +217,14 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className="block px-3 py-2.5 rounded-xl hover:bg-bg-secondary transition-colors"
                   >
+                    {p.logo && (
+                      <div className="h-4 mb-1.5 flex items-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.logo} alt="" className="h-4 w-auto object-contain dark:hidden" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.logoInverted ?? p.logo} alt="" className="hidden h-4 w-auto object-contain dark:block" />
+                      </div>
+                    )}
                     <div className="text-sm font-medium text-fg-primary">{p.title}</div>
                     <div className="text-xs text-fg-muted mt-0.5">{p.description}</div>
                   </Link>
@@ -373,6 +395,14 @@ function PartnersMenu() {
           href={p.href}
           className="flex flex-col gap-2 p-4 rounded-xl hover:bg-bg-secondary transition-colors"
         >
+          {p.logo && (
+            <div className="h-5 flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={p.logo} alt="" className="h-5 w-auto object-contain dark:hidden" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={p.logoInverted ?? p.logo} alt="" className="hidden h-5 w-auto object-contain dark:block" />
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold text-fg-primary">{p.title}</span>
             {p.badge && (

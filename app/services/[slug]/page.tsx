@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, ArrowLeft, Check, Sparkles } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -60,18 +59,16 @@ export default async function ServicePage({ params }: PageProps) {
           <Reveal delay={0.1}>
             {service.logo ? (
               <div className="inline-flex items-center justify-center h-16 mb-8">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={service.logo}
                   alt={`${service.shortTitle} logo`}
-                  width={207}
-                  height={65}
                   className="h-9 w-auto object-contain dark:hidden"
                 />
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={service.logoInverted ?? service.logo}
                   alt={`${service.shortTitle} logo`}
-                  width={207}
-                  height={65}
                   className="hidden h-9 w-auto object-contain dark:block"
                 />
               </div>
