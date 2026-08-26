@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowLeft, Check, Sparkles } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -57,12 +58,31 @@ export default async function ServicePage({ params }: PageProps) {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-8"
-              style={{ background: `${service.color}1A`, color: service.color }}
-            >
-              <Icon className="w-7 h-7" />
-            </div>
+            {service.logo ? (
+              <div className="inline-flex items-center justify-center h-16 mb-8">
+                <Image
+                  src={service.logo}
+                  alt={`${service.shortTitle} logo`}
+                  width={207}
+                  height={65}
+                  className="h-9 w-auto object-contain dark:hidden"
+                />
+                <Image
+                  src={service.logoInverted ?? service.logo}
+                  alt={`${service.shortTitle} logo`}
+                  width={207}
+                  height={65}
+                  className="hidden h-9 w-auto object-contain dark:block"
+                />
+              </div>
+            ) : (
+              <div
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-8"
+                style={{ background: `${service.color}1A`, color: service.color }}
+              >
+                <Icon className="w-7 h-7" />
+              </div>
+            )}
           </Reveal>
 
           {service.tagline && (

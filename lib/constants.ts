@@ -68,6 +68,10 @@ export type Service = {
   description: string;
   longDescription: string;
   icon: LucideIcon;
+  /** optional brand logo shown instead of the icon (light theme) */
+  logo?: string;
+  /** optional brand logo shown instead of the icon (dark theme) */
+  logoInverted?: string;
   color: string;
   gradient: string;
   features: string[];
@@ -319,6 +323,8 @@ export const SERVICES: Service[] = [
     longDescription:
       "As a certified Odoo partner, Nygrow delivers end-to-end Odoo ERP implementation tailored to your business. From accounting and inventory to manufacturing, HR, and e-commerce — we configure, customize, and integrate Odoo modules to unify your operations. Our team handles everything from migration and module development to user training and ongoing support, helping you maximize Odoo's full potential.",
     icon: Boxes,
+    logo: "/logos/odoo-logo.png",
+    logoInverted: "/logos/odoo-logo-inverted.png",
     color: "#7C3AED",
     gradient: "from-purple-500 to-indigo-600",
     features: [
