@@ -195,12 +195,25 @@ export function Navbar() {
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-bg-secondary transition-colors"
                     >
-                      <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ background: `${s.color}1A`, color: s.color }}
-                      >
-                        <Icon className="w-[18px] h-[18px]" />
-                      </div>
+                      {s.logo ? (
+                        <div className="w-9 h-9 flex items-center justify-center shrink-0">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={s.logo} alt="" className="max-w-7 max-h-7 object-contain dark:hidden" />
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={s.logoInverted ?? s.logo}
+                            alt=""
+                            className="hidden max-w-7 max-h-7 object-contain dark:block"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                          style={{ background: `${s.color}1A`, color: s.color }}
+                        >
+                          <Icon className="w-[18px] h-[18px]" />
+                        </div>
+                      )}
                       <span className="text-sm font-medium text-fg-primary">
                         {s.shortTitle}
                       </span>
@@ -290,12 +303,25 @@ function ServicesMenu() {
             href={`/services/${s.slug}`}
             className="flex items-start gap-3 p-4 rounded-xl hover:bg-bg-secondary transition-colors group"
           >
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
-              style={{ background: `${s.color}1A`, color: s.color }}
-            >
-              <Icon className="w-5 h-5" />
-            </div>
+            {s.logo ? (
+              <div className="w-10 h-10 flex items-center justify-center shrink-0 transition-transform group-hover:scale-110">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.logo} alt="" className="max-w-8 max-h-8 object-contain dark:hidden" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.logoInverted ?? s.logo}
+                  alt=""
+                  className="hidden max-w-8 max-h-8 object-contain dark:block"
+                />
+              </div>
+            ) : (
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                style={{ background: `${s.color}1A`, color: s.color }}
+              >
+                <Icon className="w-5 h-5" />
+              </div>
+            )}
             <div className="flex-1 min-w-0">
               <div className="text-sm font-semibold text-fg-primary">
                 {s.shortTitle}
