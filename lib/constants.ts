@@ -292,6 +292,8 @@ export const SERVICES: Service[] = [
     longDescription:
       "As an authorized Zoho partner, Nygrow streamlines and automates your workflows through expert Zoho setup and customization. From CRM implementation to advanced business process automation, we help you maximize productivity and efficiency. Our team ensures seamless app integration across the Zoho suite and third-party platforms, enabling unified operations throughout your organization.",
     icon: Workflow,
+    logo: "/logos/zoho-logo.svg",
+    logoInverted: "/logos/zoho-logo-inverted.svg",
     color: "#DC2626",
     gradient: "from-red-500 to-rose-600",
     features: [
