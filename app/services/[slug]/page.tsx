@@ -234,12 +234,25 @@ export default async function ServicePage({ params }: PageProps) {
                     href={`/services/${s.slug}`}
                     className="block p-7 rounded-2xl border border-border bg-bg-primary shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 transition-all group h-full"
                   >
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
-                      style={{ background: `${s.color}1A`, color: s.color }}
-                    >
-                      <OIcon className="w-5 h-5" />
-                    </div>
+                    {s.logo ? (
+                      <div className="h-7 flex items-center mb-5">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={s.logo} alt="" className="h-7 w-auto object-contain dark:hidden" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={s.logoInverted ?? s.logo}
+                          alt=""
+                          className="hidden h-7 w-auto object-contain dark:block"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                        style={{ background: `${s.color}1A`, color: s.color }}
+                      >
+                        <OIcon className="w-5 h-5" />
+                      </div>
+                    )}
                     <h3 className="text-lg font-semibold text-fg-primary mb-2">
                       {s.shortTitle}
                     </h3>

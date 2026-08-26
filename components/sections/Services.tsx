@@ -40,12 +40,25 @@ export function Services() {
                   />
 
                   <div className="relative">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110"
-                      style={{ background: `${service.color}1A`, color: service.color }}
-                    >
-                      <Icon className="w-6 h-6" />
-                    </div>
+                    {service.logo ? (
+                      <div className="h-8 flex items-center mb-5 transition-transform group-hover:scale-110">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={service.logo} alt="" className="h-8 w-auto object-contain dark:hidden" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={service.logoInverted ?? service.logo}
+                          alt=""
+                          className="hidden h-8 w-auto object-contain dark:block"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110"
+                        style={{ background: `${service.color}1A`, color: service.color }}
+                      >
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    )}
 
                     <h3 className="text-xl font-semibold text-fg-primary mb-2 tracking-tight">
                       {service.title}
