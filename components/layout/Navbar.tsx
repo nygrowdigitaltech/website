@@ -18,7 +18,14 @@ const RESOURCES = [
   { title: "FAQ", description: "Common questions, clear answers", href: "/faq" },
 ];
 
-const PARTNER_LINKS = [
+const PARTNER_LINKS: {
+  title: string;
+  description: string;
+  href: string;
+  badge?: string;
+  logo?: string;
+  logoInverted?: string;
+}[] = [
   {
     title: "Zoho Authorised Partner",
     description: "CRM setup, customization & automation",
