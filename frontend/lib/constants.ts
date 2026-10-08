@@ -101,7 +101,8 @@ export const SERVICES: Service[] = [
     longDescription:
       "A website today is more than a digital brochure — it's the engine that powers your brand's growth. At Nygrow, we merge cutting-edge development, scalable architecture, and impactful design to build websites and web applications that are fast, secure, mobile-ready, and SEO-optimized, from corporate sites and high-performing e-commerce stores to enterprise-grade applications.",
     icon: Code2,
-    color: "#16A34A",
+    color: "#1D4ED8",
+    logo: "/icons/Web-dev.svg",
     gradient: "from-emerald-500 to-green-600",
     ctaText: "Design My Site",
     features: [
@@ -144,6 +145,7 @@ export const SERVICES: Service[] = [
     icon: Smartphone,
     color: "#FBBF24",
     gradient: "from-amber-400 to-orange-500",
+    logo: "/icons/Mobile.svg",
     ctaText: "Build My App",
     features: [
       "Affordable development without compromising quality",
@@ -270,6 +272,7 @@ export const SERVICES: Service[] = [
       "Nygrow is an AI/ML development company in Coimbatore delivering AI and machine learning solutions for businesses in Chennai, Bengaluru, and globally — engineered for real business value, not novelty.",
     icon: BrainCircuit,
     color: "#EF4444",
+    logo: "/icons/AI-ML.svg",
     gradient: "from-rose-400 to-pink-500",
     ctaText: "Start AI Project",
     features: [
@@ -314,6 +317,7 @@ export const SERVICES: Service[] = [
       "At Nygrow, we design, deploy, and manage cloud and on-premises infrastructure that keeps your business fast, secure, and always on. From server setup & configuration to cloud hosting on AWS, Azure, and Google Cloud, zero-downtime migrations, 24/7 security monitoring, and performance optimization — our certified engineers deliver enterprise-grade uptime, tighter protection, and lower running costs.",
     icon: Cloud,
     color: "#A78BFA",
+    logo: "/icons/Cloud.svg",
     gradient: "from-violet-400 to-purple-500",
     ctaText: "Get Cloud Audit",
     features: [

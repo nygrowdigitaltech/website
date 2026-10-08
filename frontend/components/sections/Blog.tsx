@@ -46,19 +46,28 @@ export function Blog() {
               className="group rounded-2xl overflow-hidden border border-border bg-bg-primary shadow-soft"
             >
               <Link href={post.href} className="block p-6">
-                <span className="h-1 w-10 block rounded-full bg-brand-500 mb-5" />
-                <span className="inline-block mb-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-500 border border-brand-500/20">
+                {/* Accent line */}
+                <span className="h-1 w-10 block rounded-full bg-[var(--brand)] mb-5" />
+
+                {/* Tag pill */}
+                <span className="inline-block mb-4 px-3 py-1 rounded-full text-[11px] font-semibold 
+                  bg-[var(--brand)]/10 text-[var(--brand)] border border-[var(--brand)]/20">
                   {post.tag}
                 </span>
-                <h3 className="text-lg font-semibold text-fg-primary leading-snug group-hover:text-blue-600 transition-colors">
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-fg-primary leading-snug 
+                  group-hover:text-[var(--brand)] transition-colors">
                   {post.title}
                 </h3>
 
+                {/* Excerpt */}
                 <p className="mt-3 text-sm text-fg-tertiary leading-relaxed">
                   {post.excerpt}
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600">
+                {/* Read more link */}
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--brand)]">
                   Read more
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
