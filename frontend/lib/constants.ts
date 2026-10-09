@@ -41,21 +41,45 @@ export const CONTACT = {
     email: "info@nygrow.co.in",
     phone: "+91 89036 91770",
     location: "Coimbatore, India",
+    address: "SF.No 22/2 & 24/4, Site No 39, Anandhapuram, Vadamadurai Kurudampalayam, Coimbatore, Coimbatore North, Tamil Nadu, India, 641017",
+    icon: "/contact-icon/mail.svg",
+    phoneIcon: "/contact-icon/phone.svg",
+    locationIcon: "/contact-icon/location.svg",
   },
   sales: {
     email: "sales@nygrow.co.in",
     phone: "+91 82209 99940",
+    icon: "/contact-icon/mail.svg",
+    phoneIcon: "/contact-icon/phone.svg",
   },
   careers: {
     email: "careers@nygrow.co.in",
     phone: "+91 90926 06770",
+    icon: "/contact-icon/mail.svg",
+    phoneIcon: "/contact-icon/phone.svg",
   },
-  social: {
-    instagram: "https://www.instagram.com/nygrowdigital",
-    linkedin: "#",
-    twitter: "https://x.com/NygrowDigital",
-    facebook: "https://www.facebook.com/profile.php?id=61579758592523",
-  },
+  social: [
+    {
+      label: "Facebook",
+      icon: "/contact-icon/facebook.svg",
+      url: "https://www.facebook.com/profile.php?id=61579758592523",
+    },
+    {
+      label: "LinkedIn",
+      icon: "/contact-icon/linked in.svg",
+      url: "https://www.linkedin.com/company/nygrow-digital",
+    },
+    {
+      label: "Instagram",
+      icon: "/contact-icon/instagram.svg",
+      url: "https://www.instagram.com/nygrowdigital",
+    },
+    {
+      label: "X",
+      icon: "/contact-icon/twitter.svg",
+      url: "https://x.com/NygrowDigital",
+    },
+  ],
 } as const;
 
 export type NavLink = { label: string; href: string };
@@ -67,6 +91,17 @@ export const NAV_LINKS: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
+
+export type ServiceFeature = {
+  text: string;
+  icon?: string; // optional, can be empty string
+};
+
+export type SubService = {
+  title: string;
+  description: string;
+  icon?: string; // optional, can be empty string or path to Figma export
+};
 
 export type Service = {
   slug: string;
@@ -83,8 +118,8 @@ export type Service = {
   color: string;
   gradient: string;
   ctaText?: string;
-  features: string[];
-  subServices?: { title: string; description: string }[];
+  features: ServiceFeature[];
+  subServices?: SubService[];
   processSteps?: { title: string; description: string }[];
   technologies?: string[];
   industries?: string[];
@@ -106,22 +141,22 @@ export const SERVICES: Service[] = [
     gradient: "from-emerald-500 to-green-600",
     ctaText: "Design My Site",
     features: [
-      "Expertise across front-end and back-end development",
-      "SEO-friendly architecture that drives traffic and rankings",
-      "Mobile-first, responsive design for every device",
-      "Secure coding practices with enterprise-level data protection",
-      "Transparent pricing, no hidden costs",
-      "24/7 technical support",
+      { text: "Expertise across front-end and back-end development", icon: "/icons/Features/Web-Dev/Front-end.svg" },
+      { text: "SEO-friendly architecture that drives traffic and rankings", icon: "/icons/Features/Web-Dev/SEO.svg" },
+      { text: "Mobile-first, responsive design for every device", icon: "/icons/Features/Web-Dev/Layout.svg" },
+      { text: "Secure coding practices with enterprise-level data protection", icon: "/icons/Features/Web-Dev/Protection.svg" },
+      { text: "Transparent pricing, no hidden costs", icon: "/icons/Features/Web-Dev/Delivery.svg" },
+      { text: "24/7 technical support", icon: "/icons/Features/Web-Dev/Support.svg" },
     ],
     subServices: [
-      { title: "Custom Web Application Development", description: "Scalable, secure applications tailored to your workflows, from dashboards and portals to industry-specific apps." },
-      { title: "Enterprise Web Application Development", description: "Clean-architecture, high-security applications for complex operations at scale." },
-      { title: "E-Commerce Development", description: "Conversion-driven stores with secure payments and mobile-first design." },
-      { title: "CMS Web Development", description: "WordPress, Joomla, or Drupal platforms that are easy to update and SEO-friendly." },
-      // { title: "ERP Software Development", description: "Custom ERP solutions integrating finance, HR, supply chain, and operations into a unified, automated platform." },
-      { title: "Website Design & UI/UX", description: "Visually engaging, accessible interfaces built to convert." },
-      { title: "Landing Page Design", description: "fast, conversion-optimized pages for campaigns and lead generation." },
+      { title: "Custom Web Application Development", description: "Scalable, secure applications tailored to workflows.", icon: "/icons/Sub-Service/Web-Dev/Web App.svg" },
+      { title: "Enterprise Web Application Development", description: "Clean-architecture, high-security applications.", icon: "/icons/Sub-Service/Web-Dev/Enterprise.svg" },
+      { title: "E-Commerce Development", description: "Conversion-driven stores with secure payments.", icon: "/icons/Sub-Service/Web-Dev/E-commerce.svg" },
+      { title: "CMS Web Development", description: "WordPress, Joomla, Drupal platforms.", icon: "/icons/Sub-Service/Web-Dev/CMS.svg" },
+      { title: "Website Design & UI/UX", description: "Visually engaging, accessible interfaces.", icon: "/icons/Sub-Service/Web-Dev/UX.svg" },
+      { title: "Landing Page Design", description: "Fast, conversion-optimized campaign pages.", icon: "/icons/Sub-Service/Web-Dev/Landing.svg" },
     ],
+
     processSteps: [
       { title: "Consultation & Strategy", description: "We begin by understanding your goals and crafting a clear roadmap for success." },
       { title: "Design & Architecture", description: "Creating intuitive designs and scalable architectures tailored to your business." },
@@ -148,22 +183,24 @@ export const SERVICES: Service[] = [
     logo: "/icons/Mobile.svg",
     ctaText: "Build My App",
     features: [
-      "Affordable development without compromising quality",
-      "Dedicated app developers and round-the-clock support",
-      "Agile delivery with native and cross-platform expertise",
-      "App Store Optimization included to maximize reach",
-      "Transparent pricing with on-time delivery",
+      { text: "Affordable development without compromising quality", icon: "/icons/Features/mobile/Affordable.svg" },
+      { text: "Dedicated app developers and round-the-clock support", icon: "/icons/Features/mobile/Platform.svg" },
+      { text: "Agile delivery with native and cross-platform expertise", icon: "/icons/Features/mobile/Agile.svg" },
+      { text: "App Store Optimization included to maximize reach", icon: "/icons/Features/mobile/App-store.svg" },
+      { text: "Transparent pricing with on-time delivery", icon: "/icons/Features/mobile/Transparent.svg" },
     ],
+
     subServices: [
-      { title: "iOS App Development", description: "High-performance apps built to Apple's standards, with seamless UX and data security." },
-      { title: "Android App Development", description: "Feature-rich apps optimized across the Android ecosystem, including tablets and wearables." },
-      { title: "Cross-Platform Development", description: "Flutter and React Native apps that cut cost and time-to-market without sacrificing quality." },
-      { title: "Progressive Web Apps (PWA) Development", description: "Offline-capable, push-notification-ready apps combining web reach with native feel." },
-      { title: "Mobile UI/UX Design", description: "Human-centric interfaces focused on usability and retention." },
-      { title: "Mobile App Testing & QA", description: "Functionality, usability, security, and performance testing before every launch." },
-      { title: "App Maintenance & Support", description: "Ongoing updates, monitoring, and feature enhancements post-launch." },
-      { title: "Enterprise Mobility Solutions", description: "Internal tools and customer-facing platforms built to scale." },
+      { title: "iOS App Development", description: "High-performance apps built to Apple's standards, with seamless UX and data security.", icon: "/icons/Sub-Service/Mobile/iOS.svg" },
+      { title: "Android App Development", description: "Feature-rich apps optimized across the Android ecosystem, including tablets and wearables.", icon: "/icons/Sub-Service/Mobile/Android.svg" },
+      { title: "Cross-Platform Development", description: "Flutter and React Native apps that cut cost and time-to-market without sacrificing quality.", icon: "/icons/Sub-Service/Mobile/Cross-Platform.svg" },
+      { title: "Progressive Web Apps (PWA) Development", description: "Offline-capable, push-notification-ready apps combining web reach with native feel.", icon: "/icons/Sub-Service/Mobile/PWA.svg" },
+      { title: "Mobile UI/UX Design", description: "Human-centric interfaces focused on usability and retention.", icon: "/icons/Sub-Service/Mobile/UI-UX.svg" },
+      { title: "Mobile App Testing & QA", description: "Functionality, usability, security, and performance testing before every launch.", icon: "/icons/Sub-Service/Mobile/Testing.svg" },
+      { title: "App Maintenance & Support", description: "Ongoing updates, monitoring, and feature enhancements post-launch.", icon: "/icons/Sub-Service/Mobile/Support.svg" },
+      { title: "Enterprise Mobility Solutions", description: "Internal tools and customer-facing platforms built to scale.", icon: "/icons/Sub-Service/Mobile/Enterprise.svg" },
     ],
+
     processSteps: [
       { title: "Strategy & Analysis", description: "We begin by understanding your goals, target audience, and defining a clear roadmap." },
       { title: "Design & Wireframing", description: "Crafting intuitive wireframes and engaging designs for seamless user experiences." },
@@ -175,92 +212,92 @@ export const SERVICES: Service[] = [
     technologies: ["Java", "Kotlin", "Swift UI", "React Native", "Flutter", "Objective-C", "AI/ML", "IoT", "AR", "Blockchain", "Figma", "Sketch", "Adobe XD", "GitHub."],
     industries: ["Enterprise & Compliance", "Supply Chain & Logistics", "M-Commerce & Retail", "Healthcare & Telemedicine", "Fitness & Wellness", "Fintech & Banking", "Travel & Hospitality", "Events & Ticketing", "Real Estate", "Government & Public Services", "Non-Profit", "Entertainment & Media"],
   },
-/* ─────────────────────────────────────────────────────────────
-   * Digital Marketing & SEO services are temporarily hidden.
-   * Uncomment the block below to re-enable them on the site.
-   * ─────────────────────────────────────────────────────────────
-  {
-    slug: "digital-marketing",
-    title: "Digital Marketing",
-    shortTitle: "Marketing",
-    tagline: "Drive Traffic. Build Engagement. Maximize Conversions.",
-    description:
-      " Nygrow is a data-driven digital marketing agency in Coimbatore, combining SEO, PPC, social media, email marketing, and content strategy to help brands drive qualified traffic, deepen engagement, and grow consistently across every channel.",
-    longDescription:
-      "Digital marketing is the backbone of modern business growth. As a leading digital marketing company in Coimbatore, Nygrow combines data-driven insights with innovative strategies to deliver scalable results. From boosting organic visibility with SEO to generating instant impact with PPC and paid campaigns, building brand loyalty through social media and email marketing, or optimizing conversion funnels — we integrate innovative ideas with a data-driven approach to build your brand presence, drive traffic, and increase conversions.",
-    icon: Megaphone,
-    color: "#F97316",
-    gradient: "from-orange-400 to-red-500",
-    ctaText: "Free Marketing Audit",
-    features: [
-      "Full-funnel expertise — SEO, PPC, social, email, and CRO under one roof",
-      "Certified Google, Meta, and LinkedIn specialists",
-      "Custom strategies tailored to your industry and goals",
-      "Transparent reporting with real-time dashboards",
-      "24/7 dedicated support from strategy through scaling",
-    ],
-    subServices: [
-      { title: "Search Engine Optimization (SEO)", description: "Technical, on-page, off-page, and local SEO that drives sustainable organic growth." },
-      { title: "Pay-Per-Click (PPC)", description: "ROI-focused campaigns across Google, Meta, LinkedIn, and YouTube — from strategy to ad copy and optimization." },
-      { title: "Social Media Marketing", description: "Content, creative, and paid strategies that grow audience, boost engagement, and build loyalty." },
-      { title: "Content Marketing", description: "Blogs, videos, infographics, and case studies that establish authority and drive traffic." },
-      { title: "Email & Marketing Automation", description: "Segmented, automated campaigns that improve open rates, CTR, and ROI." },
-      { title: "Conversion Rate Optimization (CRO)", description: "Behavior analysis, funnel optimization, and A/B testing to maximize conversions." },
-      { title: "Analytics & Performance Tracking", description: "GA4 setup, advanced tagging, and custom dashboards for real-time insights." },
-      { title: "Brand Recognition", description: "Cross-channel visibility, storytelling, and influencer tie-ins to strengthen brand presence." },
-      { title: "SMS Marketing", description: "Targeted, personalized SMS campaigns for promotions, updates, and reminders." },
-    ],
-    processSteps: [
-      { title: "Audit", description: "Comprehensive review of your current digital presence, campaigns, and performance metrics." },
-      { title: "Strategic Planning", description: "Developing a tailored roadmap with channel mix, targeting, and creative direction." },
-      { title: "Launch", description: "Executing campaigns across SEO, PPC, social, and email with precision." },
-      { title: "Optimization & Scaling", description: "Continuous A/B testing, budget optimization, and scaling successful campaigns." },
-      { title: "Review & Expansion", description: "Analyzing results, refining strategies, and expanding into new growth opportunities." },
-    ],
-    technologies: ["SEMrush", "Ahrefs", "HubSpot", "Google Analytics", "Data Studio"],
-    industries: ["E-commerce", "B2B/SaaS", "Healthcare", "Education", "Real Estate", "Finance", "Hospitality", "Manufacturing", "Local Services"],
-  },
-  {
-    slug: "seo",
-    title: "Search Engine Optimization",
-    shortTitle: "SEO",
-    tagline: "Rank. Drive. Convert.",
-    description:
-      "Nygrow is a results-driven SEO agency in Coimbatore, helping startups and enterprises boost visibility, build authority, and drive high-intent traffic. With 93% of online experiences starting with a search engine, we cover on-page, off-page, technical, voice, and local SEO to give your business a complete advantage — locally, nationally, or globally.",
-    longDescription:
-      "At Nygrow, we power brands with bold, results-driven SEO. As a leading SEO agency in Coimbatore, we offer tailored strategies for both startups and enterprises. With 93% of online experiences starting with a search engine, your visibility determines your growth. We specialize in On-page SEO, Off-page SEO, Technical SEO, voice search optimization, and local search — giving your business a comprehensive advantage.",
-    icon: Search,
-    color: "#60A5FA",
-    gradient: "from-sky-400 to-blue-500",
-    ctaText: "Free SEO Audit",
-    features: [
-      "Proven performance — average 120% increase in organic traffic within 6–9 months",
-      "Higher ROI — clients see up to 3x more leads and 2.5x higher conversions",
-      "Advanced tools — Ahrefs, SEMrush, and Google Analytics for precision execution",
-      "Custom-tailored strategies — no one-size-fits-all tactics",
-      "Full transparency — real-time dashboards and reporting",
-      "White-hat, scalable techniques for long-term, sustainable growth",
-    ],
-    subServices: [
-      { title: "Site Audit", description: "Full technical, on-page, and UX review with clear recommendations and ongoing monitoring." },
-      { title: "Competitive Analysis", description: "Deep dive into competitor rankings, backlinks, and keyword targeting to uncover growth opportunities." },
-      { title: "Keyword Research", description: "High-intent, low-competition keyword targeting that shapes your content and SEO strategy." },
-      { title: "Page Optimization", description: "Meta tags, headings, internal linking, speed, and mobile responsiveness improvements." },
-      { title: "Content Creation", description: "SEO-driven blogs, landing pages, and website copy aligned with keyword goals to build authority." },
-      { title: "Impactful Reporting", description: "Transparent reporting on rankings, traffic, and conversions with actionable insights." },
-      { title: "Site Health Maintenance", description: "Ongoing technical monitoring and fast issue resolution to keep your site optimized." },
-      { title: "SEO Consulting", description: "One-on-one strategy audits, performance analysis, and tailored roadmaps for in-house teams." },
-    ],
-    processSteps: [
-      { title: "Discovery & Goals", description: "Understanding your business objectives and defining SEO success metrics." },
-      { title: "Site Audit & Fixes", description: "Comprehensive technical and on-page audit with immediate fixes for site health." },
-      { title: "Keyword & Content Strategy", description: "Building a keyword-driven content roadmap to capture high-intent traffic." },
-      { title: "On-Page & Off-Page Optimization", description: "Optimizing site elements and building authoritative backlinks for ranking growth." },
-      { title: "Reporting & Iteration", description: "Transparent reporting with continuous refinement based on performance data." },
-    ],
-    technologies: ["Google Analytics", "Search Console", "Tag Manager", "SEMrush", "Ahrefs", "Moz", "Screaming Frog", "SurferSEO", "Clearscope", "WordPress", "GTmetrix", "PageSpeed Insights", "Hotjar", "Looker", "HubSpot",],
-  },
-  ───────────────────────────────────────────────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     * Digital Marketing & SEO services are temporarily hidden.
+     * Uncomment the block below to re-enable them on the site.
+     * ─────────────────────────────────────────────────────────────
+    {
+      slug: "digital-marketing",
+      title: "Digital Marketing",
+      shortTitle: "Marketing",
+      tagline: "Drive Traffic. Build Engagement. Maximize Conversions.",
+      description:
+        " Nygrow is a data-driven digital marketing agency in Coimbatore, combining SEO, PPC, social media, email marketing, and content strategy to help brands drive qualified traffic, deepen engagement, and grow consistently across every channel.",
+      longDescription:
+        "Digital marketing is the backbone of modern business growth. As a leading digital marketing company in Coimbatore, Nygrow combines data-driven insights with innovative strategies to deliver scalable results. From boosting organic visibility with SEO to generating instant impact with PPC and paid campaigns, building brand loyalty through social media and email marketing, or optimizing conversion funnels — we integrate innovative ideas with a data-driven approach to build your brand presence, drive traffic, and increase conversions.",
+      icon: Megaphone,
+      color: "#F97316",
+      gradient: "from-orange-400 to-red-500",
+      ctaText: "Free Marketing Audit",
+      features: [
+        "Full-funnel expertise — SEO, PPC, social, email, and CRO under one roof",
+        "Certified Google, Meta, and LinkedIn specialists",
+        "Custom strategies tailored to your industry and goals",
+        "Transparent reporting with real-time dashboards",
+        "24/7 dedicated support from strategy through scaling",
+      ],
+      subServices: [
+        { title: "Search Engine Optimization (SEO)", description: "Technical, on-page, off-page, and local SEO that drives sustainable organic growth." },
+        { title: "Pay-Per-Click (PPC)", description: "ROI-focused campaigns across Google, Meta, LinkedIn, and YouTube — from strategy to ad copy and optimization." },
+        { title: "Social Media Marketing", description: "Content, creative, and paid strategies that grow audience, boost engagement, and build loyalty." },
+        { title: "Content Marketing", description: "Blogs, videos, infographics, and case studies that establish authority and drive traffic." },
+        { title: "Email & Marketing Automation", description: "Segmented, automated campaigns that improve open rates, CTR, and ROI." },
+        { title: "Conversion Rate Optimization (CRO)", description: "Behavior analysis, funnel optimization, and A/B testing to maximize conversions." },
+        { title: "Analytics & Performance Tracking", description: "GA4 setup, advanced tagging, and custom dashboards for real-time insights." },
+        { title: "Brand Recognition", description: "Cross-channel visibility, storytelling, and influencer tie-ins to strengthen brand presence." },
+        { title: "SMS Marketing", description: "Targeted, personalized SMS campaigns for promotions, updates, and reminders." },
+      ],
+      processSteps: [
+        { title: "Audit", description: "Comprehensive review of your current digital presence, campaigns, and performance metrics." },
+        { title: "Strategic Planning", description: "Developing a tailored roadmap with channel mix, targeting, and creative direction." },
+        { title: "Launch", description: "Executing campaigns across SEO, PPC, social, and email with precision." },
+        { title: "Optimization & Scaling", description: "Continuous A/B testing, budget optimization, and scaling successful campaigns." },
+        { title: "Review & Expansion", description: "Analyzing results, refining strategies, and expanding into new growth opportunities." },
+      ],
+      technologies: ["SEMrush", "Ahrefs", "HubSpot", "Google Analytics", "Data Studio"],
+      industries: ["E-commerce", "B2B/SaaS", "Healthcare", "Education", "Real Estate", "Finance", "Hospitality", "Manufacturing", "Local Services"],
+    },
+    {
+      slug: "seo",
+      title: "Search Engine Optimization",
+      shortTitle: "SEO",
+      tagline: "Rank. Drive. Convert.",
+      description:
+        "Nygrow is a results-driven SEO agency in Coimbatore, helping startups and enterprises boost visibility, build authority, and drive high-intent traffic. With 93% of online experiences starting with a search engine, we cover on-page, off-page, technical, voice, and local SEO to give your business a complete advantage — locally, nationally, or globally.",
+      longDescription:
+        "At Nygrow, we power brands with bold, results-driven SEO. As a leading SEO agency in Coimbatore, we offer tailored strategies for both startups and enterprises. With 93% of online experiences starting with a search engine, your visibility determines your growth. We specialize in On-page SEO, Off-page SEO, Technical SEO, voice search optimization, and local search — giving your business a comprehensive advantage.",
+      icon: Search,
+      color: "#60A5FA",
+      gradient: "from-sky-400 to-blue-500",
+      ctaText: "Free SEO Audit",
+      features: [
+        "Proven performance — average 120% increase in organic traffic within 6–9 months",
+        "Higher ROI — clients see up to 3x more leads and 2.5x higher conversions",
+        "Advanced tools — Ahrefs, SEMrush, and Google Analytics for precision execution",
+        "Custom-tailored strategies — no one-size-fits-all tactics",
+        "Full transparency — real-time dashboards and reporting",
+        "White-hat, scalable techniques for long-term, sustainable growth",
+      ],
+      subServices: [
+        { title: "Site Audit", description: "Full technical, on-page, and UX review with clear recommendations and ongoing monitoring." },
+        { title: "Competitive Analysis", description: "Deep dive into competitor rankings, backlinks, and keyword targeting to uncover growth opportunities." },
+        { title: "Keyword Research", description: "High-intent, low-competition keyword targeting that shapes your content and SEO strategy." },
+        { title: "Page Optimization", description: "Meta tags, headings, internal linking, speed, and mobile responsiveness improvements." },
+        { title: "Content Creation", description: "SEO-driven blogs, landing pages, and website copy aligned with keyword goals to build authority." },
+        { title: "Impactful Reporting", description: "Transparent reporting on rankings, traffic, and conversions with actionable insights." },
+        { title: "Site Health Maintenance", description: "Ongoing technical monitoring and fast issue resolution to keep your site optimized." },
+        { title: "SEO Consulting", description: "One-on-one strategy audits, performance analysis, and tailored roadmaps for in-house teams." },
+      ],
+      processSteps: [
+        { title: "Discovery & Goals", description: "Understanding your business objectives and defining SEO success metrics." },
+        { title: "Site Audit & Fixes", description: "Comprehensive technical and on-page audit with immediate fixes for site health." },
+        { title: "Keyword & Content Strategy", description: "Building a keyword-driven content roadmap to capture high-intent traffic." },
+        { title: "On-Page & Off-Page Optimization", description: "Optimizing site elements and building authoritative backlinks for ranking growth." },
+        { title: "Reporting & Iteration", description: "Transparent reporting with continuous refinement based on performance data." },
+      ],
+      technologies: ["Google Analytics", "Search Console", "Tag Manager", "SEMrush", "Ahrefs", "Moz", "Screaming Frog", "SurferSEO", "Clearscope", "WordPress", "GTmetrix", "PageSpeed Insights", "Hotjar", "Looker", "HubSpot",],
+    },
+    ───────────────────────────────────────────────────────────── */
   {
     slug: "ai-ml",
     title: "AI / ML Solutions",
@@ -276,24 +313,25 @@ export const SERVICES: Service[] = [
     gradient: "from-rose-400 to-pink-500",
     ctaText: "Start AI Project",
     features: [
-      "Deep expertise across AI, ML, NLP, computer vision, and generative AI",
-      "Custom-built systems, not one-size-fits-all models",
-      "Enterprise-grade, secure, scalable architecture",
-      "Agile delivery for faster time-to-market",
-      "End-to-end support from strategy through MLOps",
-      "Transparent collaboration with measurable KPIs",
+      { text: "Deep expertise across AI, ML, NLP, computer vision, and generative AI", icon: "/icons/Features/AI-ML/Vision.svg" },
+      { text: "Custom-built systems, not one-size-fits-all models", icon: "/icons/Features/AI-ML/Vision.svg" },
+      { text: "Enterprise-grade, secure, scalable architecture", icon: "/icons/Features/AI-ML/Secure.svg" },
+      { text: "Agile delivery for faster time-to-market", icon: "/icons/Features/AI-ML/Agile.svg" },
+      { text: "End-to-end support from strategy through MLOps", icon: "/icons/Features/AI-ML/Lifecycle.svg" },
+      { text: "Transparent collaboration with measurable KPIs", icon: "/icons/Features/AI-ML/Solutions.svg" },
     ],
     subServices: [
-      { title: "AI Strategy & Consulting", description: "Readiness assessment, use-case prioritization, and technology stack selection." },
-      { title: "Data Collection & Annotation", description: "Clean, unbiased, production-ready datasets." },
-      { title: "Custom AI/ML Model Development", description: "Predictive analytics, recommendation engines, demand forecasting, risk analysis." },
-      { title: "Natural Language Processing", description: "Sentiment analysis, chatbots, summarization, entity extraction." },
-      { title: "Computer Vision", description: "Image recognition, object detection, quality inspection, visual analytics." },
-      { title: "Generative AI", description: "Content, image, audio/video generation, and conversational AI." },
-      { title: "AI-Powered Agents & Automation", description: "Customer support bots and back-office RPA." },
-      { title: "MLOps & Deployment", description: "Versioning, monitoring, and production-grade scaling." },
-      { title: "AI-Powered Analytics", description: "Predictive models and advanced dashboards." },
+      { title: "AI Strategy & Consulting", description: "Readiness assessment, use-case prioritization, and technology stack selection.", icon: "/icons/Sub-Service/AI-ML/AI Strategy.svg" },
+      { title: "Data Collection & Annotation", description: "Clean, unbiased, production-ready datasets.", icon: "/icons/Sub-Service/AI-ML/Data Coll.svg" },
+      { title: "Custom AI/ML Model Development", description: "Predictive analytics, recommendation engines, demand forecasting, risk analysis.", icon: "/icons/Sub-Service/AI-ML/ML.svg" },
+      { title: "Natural Language Processing", description: "Sentiment analysis, chatbots, summarization, entity extraction.", icon: "/icons/Sub-Service/AI-ML/Natural Lang.svg" },
+      { title: "Computer Vision", description: "Image recognition, object detection, quality inspection, visual analytics.", icon: "/icons/Sub-Service/AI-ML/ComVision.svg" },
+      { title: "Generative AI", description: "Content, image, audio/video generation, and conversational AI.", icon: "/icons/Sub-Service/AI-ML/Generative AI.svg" },
+      { title: "AI-Powered Agents & Automation", description: "Customer support bots and back-office RPA.", icon: "/icons/Sub-Service/AI-ML/RPA.svg" },
+      { title: "MLOps & Deployment", description: "Versioning, monitoring, and production-grade scaling.", icon: "/icons/Sub-Service/AI-ML/Mlops.svg" },
+      { title: "AI-Powered Analytics", description: "Predictive models and advanced dashboards.", icon: "/icons/Sub-Service/AI-ML/AI.svg" },
     ],
+
     processSteps: [
       { title: "Discovery & Strategy", description: "We begin by identifying business goals, defining AI opportunities, and creating a clear roadmap." },
       { title: "Data Analysis & Preparation", description: "Curating, cleaning, and structuring datasets to ensure accuracy, fairness, and readiness for modeling." },
@@ -321,20 +359,21 @@ export const SERVICES: Service[] = [
     gradient: "from-violet-400 to-purple-500",
     ctaText: "Get Cloud Audit",
     features: [
-      "99.99% uptime you can count on",
-      "Scalable infrastructure that grows without re-architecture",
-      "Enterprise-grade security and compliance management",
-      "Cost-optimized architecture planning to maximize ROI",
-      "24/7 expert support from certified engineers",
+      { text: "99.99% uptime you can count on", icon: "/icons/Features/Cloud/Uptime.svg" },
+      { text: "Scalable infrastructure that grows without re-architecture", icon: "/icons/Features/Cloud/Scalable.svg" },
+      { text: "Enterprise-grade security and compliance management", icon: "/icons/Features/Cloud/Security.svg" },
+      { text: "Cost-optimized architecture planning to maximize ROI", icon: "/icons/Features/Cloud/Cost.svg" },
+      { text: "24/7 expert support from certified engineers", icon: "/icons/Features/Cloud/Support.svg" },
     ],
     subServices: [
-      { title: "Server Setup & Configuration", description: "Dedicated, VPS, hybrid, and cloud environments tailored to your workload and security needs." },
-      { title: "Cloud Hosting (AWS, Azure, Google Cloud)", description: "Scalable, cost-efficient, multi-cloud deployments." },
-      { title: "Server Migration & Data Transfer", description: "Zero-downtime migration with full data integrity." },
-      { title: "Server Security & Monitoring", description: "Firewalls, intrusion detection, DDoS protection, and real-time monitoring." },
-      { title: "Performance Optimization", description: "CPU, memory, and storage tuning for lower latency and higher availability." },
-      { title: "24/7 Server Support", description: "Certified engineers on standby for routine checks and critical incidents." },
+      { title: "Server Setup & Configuration", description: "Dedicated, VPS, hybrid, and cloud environments tailored to your workload and security needs.", icon: "/icons/Sub-Service/Cloud/Server.svg" },
+      { title: "Cloud Hosting (AWS, Azure, Google Cloud)", description: "Scalable, cost-efficient, multi-cloud deployments.", icon: "/icons/Sub-Service/Cloud/hosting.svg" },
+      { title: "Server Migration & Data Transfer", description: "Zero-downtime migration with full data integrity.", icon: "/icons/Sub-Service/Cloud/Data Transfer.svg" },
+      { title: "Server Security & Monitoring", description: "Firewalls, intrusion detection, DDoS protection, and real-time monitoring.", icon: "/icons/Sub-Service/Cloud/Security.svg" },
+      { title: "Performance Optimization", description: "CPU, memory, and storage tuning for lower latency and higher availability.", icon: "/icons/Sub-Service/Cloud/Optimization.svg" },
+      { title: "24/7 Server Support", description: "Certified engineers on standby for routine checks and critical incidents.", icon: "/icons/Sub-Service/Cloud/Support.svg" },
     ],
+
     processSteps: [
       { title: "Assessment & Planning", description: "We start by analyzing your current infrastructure, identifying gaps, and creating a tailored cloud strategy." },
       { title: "Implementation & Setup", description: "Provisioning servers, configuring environments, and setting up secure cloud architecture." },
@@ -360,12 +399,12 @@ export const SERVICES: Service[] = [
     gradient: "from-red-500 to-rose-600",
     ctaText: "Get Zoho Consultation",
     features: [
-      "24/7 dedicated technical support",
-      "Transparent communication and pricing — no hidden costs",
-      "Certified Zoho developers with deep application expertise",
-      "Flexible, highly adaptable customization options",
-      "99.9% implementation accuracy across projects",
-      "Secure migration with zero data loss",
+      { text: "24/7 dedicated technical support", icon: "" },
+      { text: "Transparent communication and pricing — no hidden costs", icon: "" },
+      { text: "Certified Zoho developers with deep application expertise", icon: "" },
+      { text: "Flexible, highly adaptable customization options", icon: "" },
+      { text: "99.9% implementation accuracy across projects", icon: "" },
+      { text: "Secure migration with zero data loss", icon: "" },
     ],
     subServices: [
       { title: "Zoho CRM", description: "Lead management and automated sales pipelines to streamline your sales process." },
@@ -406,12 +445,12 @@ export const SERVICES: Service[] = [
     gradient: "from-purple-500 to-indigo-600",
     ctaText: "Get Odoo Consultation",
     features: [
-      "24/7 dedicated technical support",
-      "Transparent communication and pricing — no hidden costs",
-      "Experienced, certified Odoo consultants",
-      "Flexible, scalable customization options",
-      "99.9% implementation accuracy across projects",
-      "Secure migration with zero data loss",
+      { text: "24/7 dedicated technical support", icon: "" },
+      { text: "Transparent communication and pricing — no hidden costs", icon: "" },
+      { text: "Experienced, certified Odoo consultants", icon: "" },
+      { text: "Flexible, scalable customization options", icon: "" },
+      { text: "99.9% implementation accuracy across projects", icon: "" },
+      { text: "Secure migration with zero data loss", icon: "" },
     ],
     subServices: [
       { title: "Odoo CRM", description: "Centralized lead, opportunity, and pipeline management." },
