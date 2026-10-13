@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show a message
-        run: echo "Hello from Nygrow GitHub Actions!"
+        run: |
+          echo "Hello from Nygrow GitHub Actions!"
 
       - name: Show the current branch
-        run: echo "Branch: $GITHUB_REF_NAME"
+        run: |
+          echo "Branch: $GITHUB_REF_NAME"
