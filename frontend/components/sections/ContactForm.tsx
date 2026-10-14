@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Check, Loader2 } from "lucide-react";
+import { useReCaptcha } from "@/components/ui/ReCaptcha";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -12,10 +13,13 @@ export function ContactForm() {
     name: "",
     email: "",
     company: "",
+    phone: "",
     service: "",
     budget: "",
     message: "",
   });
+  const [recaptchaError, setRecaptchaError] = useState(false);
+  const { execute: executeRecaptcha } = useReCaptcha();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -23,16 +27,20 @@ export function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
     setStatus("loading");
+    setRecaptchaError(false);
 
     try {
-      // Replace the simulated Promise + setTimeout with a real API call
+      const token = await executeRecaptcha("contact");
+
       const res = await fetch("http://127.0.0.1:8000/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, recaptcha_token: token }),
       });
 
       if (res.ok) {
@@ -43,16 +51,22 @@ export function ContactForm() {
             name: "",
             email: "",
             company: "",
+            phone: "",
             service: "",
             budget: "",
             message: "",
           });
         }, 4000);
       } else {
+        const data = await res.json();
+        if (data.detail?.includes("reCAPTCHA")) {
+          setRecaptchaError(true);
+        }
         setStatus("error");
       }
     } catch (err) {
       console.error("Error submitting form:", err);
+      setRecaptchaError(true);
       setStatus("error");
     }
   };
@@ -107,6 +121,15 @@ export function ContactForm() {
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Field
+          label="Phone number"
+          name="phone"
+          type="tel"
+          value={form.phone}
+          onChange={handleChange}
+          required
+          placeholder="+91 98765 43210"
+        />
         <SelectField
           label="Service interested in"
           name="service"
@@ -154,6 +177,34 @@ export function ContactForm() {
           className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-xl text-sm text-fg-primary placeholder:text-fg-muted focus:outline-none focus:border-brand-500 focus:bg-bg-tertiary transition-all resize-none"
         />
       </div>
+
+      {recaptchaError && (
+        <p className="text-sm text-red-500">
+          Verification failed. Please try again.
+        </p>
+      )}
+
+      <p className="text-[11px] text-fg-muted">
+        Protected by Google{" "}
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-fg-secondary"
+        >
+          Privacy
+        </a>{" "}
+        &{" "}
+        <a
+          href="https://policies.google.com/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-fg-secondary"
+        >
+          Terms
+        </a>
+      </p>
+
 
       <motion.button
         whileTap={{ scale: 0.98 }}

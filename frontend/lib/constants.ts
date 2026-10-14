@@ -534,6 +534,10 @@ export const NYGROW_DIFFERENCE = [
   }
 ];
 
+export const RECAPTCHA = {
+  siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
+} as const;
+
 export const PARTNERS = [
   { name: "Google Cloud", category: "Cloud" },
   { name: "Microsoft Azure", category: "Cloud" },
