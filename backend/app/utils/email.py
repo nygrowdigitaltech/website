@@ -14,6 +14,7 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 
 
+
 def send_email(to_email: str, subject: str, body: str) -> bool:
     if not SMTP_HOST or not SMTP_USER or not SMTP_PASSWORD:
         print("SMTP not configured")
