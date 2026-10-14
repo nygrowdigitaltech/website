@@ -57,7 +57,11 @@ def get_db():
 
 # CREATE
 @router.post("/contact/")
-def create_contact(contact: schemas.ContactCreate, db: Session = Depends(get_db)):
+async def create_contact(contact: schemas.ContactCreate, db: Session = Depends(get_db)):
+    # Verify reCAPTCHA token
+    if not await verify_recaptcha(contact.recaptcha_token):
+        raise HTTPException(status_code=400, detail="reCAPTCHA verification failed")
+    
     new_contact = crud.create_contact(db, contact)
 
     # Notify the team by email — failure here should not break the save
@@ -67,6 +71,7 @@ def create_contact(contact: schemas.ContactCreate, db: Session = Depends(get_db)
             f"Name: {contact.name}\n"
             f"Email: {contact.email}\n"
             f"Company: {contact.company}\n"
+            f"Phone: {contact.phone}\n"
             f"Service: {contact.service}\n"
             f"Budget: {contact.budget}\n\n"
             f"Message:\n{contact.message}"
