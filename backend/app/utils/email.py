@@ -10,8 +10,11 @@ load_dotenv()
 SMTP_HOST = os.getenv("SMTP_HOST") or os.getenv("SMTP_SERVER")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+# Gmail App Passwords are shown with spaces for readability (e.g. "xxxx xxxx xxxx xxxx"),
+# but SMTP login needs them without spaces — strip them in case that's how it got pasted in.
+SMTP_PASSWORD = (os.getenv("SMTP_PASSWORD") or "").replace(" ", "")
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
+EMAIL_RECEIVER = os.getenv("EMAIL_RECEIVER")
 
 
 def send_email(to_email: str, subject: str, body: str) -> bool:

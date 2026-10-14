@@ -10,7 +10,7 @@ import {
   X,
   ArrowUpRight,
 } from "lucide-react";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+// import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Logo } from "@/components/ui/Logo";
 import { BRAND, CONTACT, SERVICES } from "@/lib/constants";
 
@@ -36,18 +36,11 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <SocialLink href={CONTACT.social.instagram} label="Instagram">
-              <FaInstagram className="w-4 h-4" />
-            </SocialLink>
-            <SocialLink href={CONTACT.social.linkedin} label="LinkedIn">
-              <FaLinkedin className="w-4 h-4" />
-            </SocialLink>
-            <SocialLink href={CONTACT.social.twitter} label="Twitter">
-              <X className="w-4 h-4" />
-            </SocialLink>
-            <SocialLink href={CONTACT.social.facebook} label="Facebook">
-              <FaFacebook className="w-4 h-4" />
-            </SocialLink>
+            {CONTACT.social.map((social) => (
+              <SocialLink key={social.label} href={social.url} label={social.label}>
+                <img src={social.icon} alt={social.label} className="w-5 h-5" />
+              </SocialLink>
+            ))}
           </div>
 
         </div>
@@ -61,18 +54,18 @@ export function Footer() {
             </h4>
             <div className="space-y-4">
               <ContactRow
-                icon={<MapPin className="w-4 h-4" />}
-                label={CONTACT.info.location}
-              />
-              <ContactRow
-                icon={<Mail className="w-4 h-4" />}
+                icon={<img src={CONTACT.info.icon} alt="Email" className="w-5 h-5" />}
                 label={CONTACT.info.email}
                 href={`mailto:${CONTACT.info.email}`}
               />
               <ContactRow
-                icon={<Phone className="w-4 h-4" />}
+                icon={<img src={CONTACT.info.phoneIcon} alt="Phone" className="w-5 h-5" />}
                 label={CONTACT.info.phone}
                 href={`tel:${CONTACT.info.phone.replace(/\s/g, "")}`}
+              />
+              <ContactRow
+                icon={<img src={CONTACT.info.locationIcon} alt="Location" className="w-5 h-5" />}
+                label={CONTACT.info.location}
               />
             </div>
           </div>
@@ -84,31 +77,31 @@ export function Footer() {
             </h4>
             <div className="space-y-4">
               <ContactRow
-                icon={<Mail className="w-4 h-4" />}
+                icon={<img src={CONTACT.sales.icon} alt="Email" className="w-5 h-5" />}
                 label={CONTACT.sales.email}
                 href={`mailto:${CONTACT.sales.email}`}
               />
               <ContactRow
-                icon={<Phone className="w-4 h-4" />}
+                icon={<img src={CONTACT.sales.phoneIcon} alt="Phone" className="w-5 h-5" />}
                 label={CONTACT.sales.phone}
                 href={`tel:${CONTACT.sales.phone.replace(/\s/g, "")}`}
               />
             </div>
           </div>
 
-          {/* Career */}
+          {/* Careers */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] text-fg-muted mb-5">
-              Career
+              Careers
             </h4>
             <div className="space-y-4">
               <ContactRow
-                icon={<Mail className="w-4 h-4" />}
+                icon={<img src={CONTACT.careers.icon} alt="Email" className="w-5 h-5" />}
                 label={CONTACT.careers.email}
                 href={`mailto:${CONTACT.careers.email}`}
               />
               <ContactRow
-                icon={<Phone className="w-4 h-4" />}
+                icon={<img src={CONTACT.careers.phoneIcon} alt="Phone" className="w-5 h-5" />}
                 label={CONTACT.careers.phone}
                 href={`tel:${CONTACT.careers.phone.replace(/\s/g, "")}`}
               />

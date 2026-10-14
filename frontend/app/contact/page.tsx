@@ -4,6 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CONTACT, BRAND } from "@/lib/constants";
 
+
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -67,10 +68,11 @@ export default function ContactPage() {
 
       <section className="relative pb-20 overflow-hidden">
         <div className="container-px mx-auto max-w-[88rem]">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-            <Reveal className="lg:col-span-3">
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
+            <Reveal className="lg:col-span-3 h-full">
               <div className="rounded-3xl p-8 sm:p-10 border border-border bg-bg-primary shadow-soft">
-                <h2 className="text-2xl font-medium text-fg-primary mb-2">
+                <h2 className="text-2xl font-medium text-blue-600 mb-2">
                   Start a conversation
                 </h2>
                 <p className="text-sm text-fg-tertiary mb-8">
@@ -80,71 +82,68 @@ export default function ContactPage() {
               </div>
             </Reveal>
 
-            <div className="lg:col-span-2 space-y-5">
-              {CONTACT_CHANNELS.map((channel, idx) => {
-                const Icon = channel.icon;
-                return (
-                  <Reveal key={channel.title} delay={idx * 0.1}>
-                    <div className="rounded-2xl p-6 border border-border bg-bg-primary shadow-soft hover:shadow-soft-lg transition-all">
-                      <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                        style={{
-                          background: `${channel.color}20`,
-                          border: `1px solid ${channel.color}40`,
-                        }}
-                      >
-                        <Icon
-                          className="w-[18px] h-[18px]"
-                          style={{ color: channel.color }}
-                        />
-                      </div>
-                      <h3 className="text-base font-medium text-fg-primary mb-1">
-                        {channel.title}
-                      </h3>
-                      <p className="text-xs text-fg-muted mb-4">
-                        {channel.description}
-                      </p>
-                      <div className="space-y-2">
-                        <a
-                          href={`mailto:${channel.email}`}
-                          className="flex items-center gap-2 text-sm text-fg-secondary hover:text-fg-primary transition-colors"
-                        >
-                          <Mail className="w-3.5 h-3.5 text-fg-muted" />
-                          {channel.email}
-                        </a>
-                        <a
-                          href={`tel:${channel.phone.replace(/\s/g, "")}`}
-                          className="flex items-center gap-2 text-sm text-fg-secondary hover:text-fg-primary transition-colors"
-                        >
-                          <Phone className="w-3.5 h-3.5 text-fg-muted" />
-                          {channel.phone}
-                        </a>
-                      </div>
-                    </div>
-                  </Reveal>
-                );
-              })}
-
-              <Reveal delay={0.4}>
+            <div className="lg:col-span-2 h-full">
+              <Reveal delay={0.1}>
                 <div className="rounded-2xl p-6 border border-border bg-bg-primary shadow-soft">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 "
-                  >
-                    <MapPin className="w-[18px] h-[18px] text-brand-600 dark:text-brand-400" />
-                  </div>
-                  <h3 className="text-base font-medium text-fg-primary mb-2">
-                    We're based in
+                  <h3 className="text-base font-medium text-blue-600 mb-4">
+                    Corporate Office
                   </h3>
-                  <div className="space-y-1">
-                    {BRAND.locations.map((loc) => (
-                      <div key={loc} className="text-sm text-fg-secondary">
-                        {loc}
-                      </div>
+                  <p className="text-sm text-fg-secondary mb-4">
+                    {CONTACT.info.address}
+                  </p>
+
+                  <h3 className="text-base font-medium text-blue-600 mb-2">
+                    Our Branches
+                  </h3>
+                  <ul className="space-y-1 text-sm text-fg-secondary mb-6">
+                    {BRAND.locations.map((branch) => (
+                      <li key={branch} className="flex items-center gap-2">
+                        <img src="/contact-icon/location.svg" alt="Location" className="w-4 h-4" />
+                        {branch}
+                      </li>
+                    ))}
+                  </ul>
+                  <h3 className="text-base font-medium text-blue-600 mb-4">
+                    Contact Info
+                  </h3>
+                  <ul className="space-y-2 text-sm text-fg-secondary">
+                    <li className="flex items-center gap-2">
+                      <img src={CONTACT.info.icon} alt="Email" className="w-5 h-5" />
+                      <a href={`mailto:${CONTACT.info.email}`} className="hover:text-fg-primary">
+                        {CONTACT.info.email}
+                      </a>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <img src={CONTACT.info.phoneIcon} alt="Phone" className="w-5 h-5" />
+                      <a href={`tel:${CONTACT.info.phone.replace(/\s+/g, "")}`} className="hover:text-fg-primary">
+                        {CONTACT.info.phone}
+                      </a>
+                    </li>
+                  </ul>
+
+                  <h3 className="text-base font-medium text-blue-600 mb-4 mt-6">
+                    Stay Connected
+                  </h3>
+                  <div className="flex gap-4">
+                    {CONTACT.social.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-90 transition-opacity duration-200"
+                      >
+                        <img src={social.icon} alt={social.label} className="w-5 h-5" />
+                        {/* {social.label} */}
+                      </a>
                     ))}
                   </div>
+
                 </div>
               </Reveal>
             </div>
+
+
           </div>
         </div>
       </section>

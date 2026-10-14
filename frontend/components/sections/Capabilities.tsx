@@ -1,54 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Users,
-  Award,
-  Headset,
-  Lightbulb,
-  Handshake,
-  Wrench,
-} from "lucide-react";
+// import {
+//   Users,
+//   Award,
+//   Headset,
+//   Lightbulb,
+//   Handshake,
+//   Wrench,
+// } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const ITEMS = [
   {
-    icon: Users,
+    icon: "/process-icon/collaborative.svg",
     kicker: "Culture",
     title: "Collaborative teams that ship",
     desc: "Cross-functional pods that co-create with you and move from idea to release together.",
     color: "text-blue-500 bg-blue-500/12",
   },
   {
-    icon: Award,
+    icon: "/process-icon/leadership.svg",
     kicker: "People",
     title: "Expert leadership",
     desc: "Seasoned engineers and strategists who have delivered across industries and scale.",
     color: "text-yellow-500 bg-yellow-500/12",
   },
   {
-    icon: Headset,
+    icon: "/process-icon/support.svg",
     kicker: "Service",
     title: "24/7 client support",
     desc: "Responsive, always-on support so your operations never skip a beat.",
     color: "text-green-500 bg-green-500/12",
   },
   {
-    icon: Lightbulb,
+    icon: "/process-icon/strategy.svg",
     kicker: "Process",
     title: "Strategy sessions",
     desc: "Discovery-led planning that aligns technology to real business outcomes.",
     color: "text-purple-500 bg-purple-500/12",
   },
   {
-    icon: Handshake,
+    icon: "/process-icon/built together.svg",
     kicker: "Partnership",
     title: "Built together",
     desc: "Transparent, client-first relationships founded on trust and shared goals.",
     color: "text-pink-500 bg-pink-500/12",
   },
   {
-    icon: Wrench,
+    icon: "/process-icon/delivery.svg",
     kicker: "Craft",
     title: "Hands-on delivery",
     desc: "Rigorous testing and fast iteration to ship purpose-built, future-ready solutions.",
@@ -87,7 +87,7 @@ export function Capabilities() {
                 className="group relative rounded-3xl border border-border bg-bg-secondary shadow-soft p-7 hover:border-brand-500/40 transition-colors"
               >
                 <div className={`w-12 h-12 rounded-2xl grid place-items-center ${item.color}`}>
-                  <Icon className="w-6 h-6" strokeWidth={1.75} />
+                  <img src={item.icon} alt={item.kicker} className="w-8 h-8" />
                 </div>
 
                 <span className="mt-6 block text-[10px] font-semibold uppercase tracking-[0.24em] text-fg-muted">

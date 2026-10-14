@@ -126,16 +126,20 @@ export default async function ServicePage({ params }: PageProps) {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {service.features.map((feature, i) => (
-              <Reveal key={feature} delay={i * 0.05}>
+              <Reveal key={feature.text} delay={i * 0.05}>
                 <div className="flex items-start gap-3 p-6 rounded-2xl border border-border bg-bg-primary shadow-soft h-full">
                   <div
-                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ background: `${service.color}1A`, color: service.color }}
+                    className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ background: `${service.color}1A` }}
                   >
-                    <Check className="w-4 h-4" strokeWidth={3} />
+                    {feature.icon ? (
+                      <img src={feature.icon} alt="" className="w-7 h-7 object-contain" />
+                    ) : (
+                      <Check className="w-7 h-7" strokeWidth={3} />
+                    )}
                   </div>
                   <p className="text-sm text-fg-secondary leading-relaxed pt-1">
-                    {feature}
+                    {feature.text}
                   </p>
                 </div>
               </Reveal>
@@ -157,10 +161,13 @@ export default async function ServicePage({ params }: PageProps) {
               {service.subServices.map((sub, i) => (
                 <Reveal key={sub.title} delay={i * 0.05}>
                   <div className="p-7 rounded-2xl border border-border bg-bg-primary shadow-soft hover:shadow-soft-lg transition-all h-full">
-                    <Sparkles
-                      className="w-5 h-5 mb-4"
-                      style={{ color: service.color }}
-                    />
+                    <div className="w-8 h-8 mb-4 flex items-center justify-center">
+                      {sub.icon ? (
+                        <img src={sub.icon} alt="" className="w-8 h-8 object-contain" />
+                      ) : (
+                        <Sparkles className="w-8 h-8" style={{ color: service.color }} />
+                      )}
+                    </div>
                     <h3 className="text-base font-semibold text-fg-primary mb-2">
                       {sub.title}
                     </h3>
@@ -170,6 +177,7 @@ export default async function ServicePage({ params }: PageProps) {
                   </div>
                 </Reveal>
               ))}
+
             </div>
           </div>
         </section>

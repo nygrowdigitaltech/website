@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 import os
 import httpx
 from .. import crud, database, schemas
+from ..utils.email import send_email, EMAIL_RECEIVER
 
 router = APIRouter()
 
