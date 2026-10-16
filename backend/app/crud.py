@@ -3,7 +3,8 @@ from . import models, schemas
 
 # CREATE
 def create_contact(db: Session, contact: schemas.ContactCreate):
-    db_contact = models.Contact(**contact.dict())
+    contact_data = contact.dict(exclude={"recaptcha_token"})
+    db_contact = models.Contact(**contact_data)
     db.add(db_contact)
     db.commit()
     db.refresh(db_contact)
@@ -21,7 +22,8 @@ def get_contact(db: Session, contact_id: int):
 def update_contact(db: Session, contact_id: int, contact_update: schemas.ContactCreate):
     db_contact = db.query(models.Contact).filter(models.Contact.id == contact_id).first()
     if db_contact:
-        for key, value in contact_update.dict().items():
+        update_data = contact_update.dict(exclude={"recaptcha_token"})
+        for key, value in update_data.items():
             setattr(db_contact, key, value)
         db.commit()
         db.refresh(db_contact)

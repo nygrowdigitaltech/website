@@ -7,6 +7,7 @@ class Contact(Base):
     name = Column(String)
     email = Column(String)
     company = Column(String)
+    phone = Column(String)
     service = Column(String)
     budget = Column(String)
     message = Column(String)

@@ -147,7 +147,7 @@ export default function SolutionsPage() {
             <h1 className="heading-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-8">
               Built for your
               <br />
-              <span className="text-rainbow">industry. Built for outcomes.</span>
+              <span>industry. Built for outcomes.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>

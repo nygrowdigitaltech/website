@@ -1,0 +1,11 @@
+
+name: Nygrow First CI Workflow
+
+on: [workflow_dispatch]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test workflow
+        run: echo Hello from Nygrow
