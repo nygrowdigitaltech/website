@@ -36,13 +36,8 @@ async def verify_recaptcha(token: str) -> bool:
         if not result.get("success", False):
             print(f"reCAPTCHA verification failed: {result.get('error-codes', [])}")
             return False
-        
-        # reCAPTCHA v3 returns a score (0.0 - 1.0); v2 does not
-        score = result.get("score")
-        if score is not None and score < 0.5:
-            print(f"reCAPTCHA score too low: {score}")
-            return False
-        
+
+        # reCAPTCHA v2 does not return a score
         return True
     except Exception as e:
         print(f"reCAPTCHA verification error: {e}")

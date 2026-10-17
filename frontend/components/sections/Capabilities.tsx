@@ -13,42 +13,42 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const ITEMS = [
   {
-    icon: "/process-icon/collaborative.svg",
+    icon: "/process-icon/Collaborative.svg",
     kicker: "Culture",
     title: "Collaborative teams that ship",
     desc: "Cross-functional pods that co-create with you and move from idea to release together.",
     color: "text-blue-500 bg-blue-500/12",
   },
   {
-    icon: "/process-icon/leadership.svg",
+    icon: "/process-icon/Leadership.svg",
     kicker: "People",
     title: "Expert leadership",
     desc: "Seasoned engineers and strategists who have delivered across industries and scale.",
     color: "text-yellow-500 bg-yellow-500/12",
   },
   {
-    icon: "/process-icon/support.svg",
+    icon: "/process-icon/Support.svg",
     kicker: "Service",
     title: "24/7 client support",
     desc: "Responsive, always-on support so your operations never skip a beat.",
     color: "text-green-500 bg-green-500/12",
   },
   {
-    icon: "/process-icon/strategy.svg",
+    icon: "/process-icon/Strategy.svg",
     kicker: "Process",
     title: "Strategy sessions",
     desc: "Discovery-led planning that aligns technology to real business outcomes.",
     color: "text-purple-500 bg-purple-500/12",
   },
   {
-    icon: "/process-icon/built together.svg",
+    icon: "/process-icon/Built together.svg",
     kicker: "Partnership",
     title: "Built together",
     desc: "Transparent, client-first relationships founded on trust and shared goals.",
     color: "text-pink-500 bg-pink-500/12",
   },
   {
-    icon: "/process-icon/delivery.svg",
+    icon: "/process-icon/Delivery.svg",
     kicker: "Craft",
     title: "Hands-on delivery",
     desc: "Rigorous testing and fast iteration to ship purpose-built, future-ready solutions.",
