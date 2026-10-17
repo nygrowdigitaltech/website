@@ -7,70 +7,92 @@ import { useReCaptcha } from "@/components/ui/ReCaptcha";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const INITIAL_FORM = {
+  name: "",
+  email: "",
+  company: "",
+  phone: "",
+  service: "",
+  budget: "",
+  message: "",
+};
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    service: "",
-    budget: "",
-    message: "",
-  });
-  const [recaptchaError, setRecaptchaError] = useState(false);
-  const { execute: executeRecaptcha } = useReCaptcha();
+  const [form, setForm] = useState(INITIAL_FORM);
+  const [recaptchaError, setRecaptchaError] = useState("");
+
+  const {
+    containerRef,
+    token,
+    reset: resetRecaptcha,
+    error: recaptchaLoadError,
+  } = useReCaptcha();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setRecaptchaError("");
+
+    if (!token) {
+      setRecaptchaError("Please complete the reCAPTCHA checkbox.");
+      return;
+    }
 
     setStatus("loading");
-    setRecaptchaError(false);
 
     try {
-      const token = await executeRecaptcha("contact");
-
       const res = await fetch("http://127.0.0.1:8000/contact/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, recaptcha_token: token }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          recaptcha_token: token,
+        }),
       });
 
-      if (res.ok) {
-        setStatus("success");
-        setTimeout(() => {
-          setStatus("idle");
-          setForm({
-            name: "",
-            email: "",
-            company: "",
-            phone: "",
-            service: "",
-            budget: "",
-            message: "",
-          });
-        }, 4000);
-      } else {
-        const data = await res.json();
-        if (data.detail?.includes("reCAPTCHA")) {
-          setRecaptchaError(true);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const detail =
+          typeof data.detail === "string" ? data.detail : "";
+
+        if (detail.toLowerCase().includes("recaptcha")) {
+          setRecaptchaError(
+            "Verification expired or failed. Please check the box again."
+          );
+          resetRecaptcha();
         }
+
         setStatus("error");
+        return;
       }
+
+      setStatus("success");
+
+      // Clear the form and checkbox after displaying success.
+      window.setTimeout(() => {
+        setForm({ ...INITIAL_FORM });
+        resetRecaptcha();
+        setRecaptchaError("");
+        setStatus("idle");
+      }, 4000);
     } catch (err) {
-      console.error("Error submitting form:", err);
-      setRecaptchaError(true);
+      console.error("Error submitting contact form:", err);
       setStatus("error");
     }
   };
-
 
   if (status === "success") {
     return (
@@ -78,11 +100,20 @@ export function ContactForm() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         className="py-12 text-center"
+        role="status"
+        aria-live="polite"
       >
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-100 dark:bg-brand-900/30 border border-brand-300 dark:border-brand-700 mb-6">
-          <Check className="w-7 h-7 text-brand-600 dark:text-brand-400" strokeWidth={3} />
+          <Check
+            className="w-7 h-7 text-brand-600 dark:text-brand-400"
+            strokeWidth={3}
+          />
         </div>
-        <h3 className="text-xl font-medium text-fg-primary mb-2">Message received</h3>
+
+        <h3 className="text-xl font-medium text-fg-primary mb-2">
+          Message received
+        </h3>
+
         <p className="text-sm text-fg-secondary max-w-sm mx-auto">
           Thank you. We'll reach out within one business day with next steps.
         </p>
@@ -101,6 +132,7 @@ export function ContactForm() {
           required
           placeholder="Jane Doe"
         />
+
         <Field
           label="Email address"
           name="email"
@@ -130,6 +162,7 @@ export function ContactForm() {
           required
           placeholder="+91 98765 43210"
         />
+
         <SelectField
           label="Service interested in"
           name="service"
@@ -144,19 +177,6 @@ export function ContactForm() {
             "Not sure yet",
           ]}
         />
-        {/* <SelectField
-          label="Estimated budget"
-          name="budget"
-          value={form.budget}
-          onChange={handleChange}
-          options={[
-            "< ₹5 Lakh",
-            "₹5 Lakh – ₹15 Lakh",
-            "₹15 Lakh – ₹50 Lakh",
-            "₹50 Lakh+",
-            "Let's discuss",
-          ]}
-        /> */}
       </div>
 
       <div>
@@ -166,6 +186,7 @@ export function ContactForm() {
         >
           Project details
         </label>
+
         <textarea
           id="message"
           name="message"
@@ -178,11 +199,22 @@ export function ContactForm() {
         />
       </div>
 
-      {recaptchaError && (
-        <p className="text-sm text-red-500">
-          Verification failed. Please try again.
-        </p>
-      )}
+      {/* Visible Google reCAPTCHA v2 checkbox */}
+      <div className="space-y-2">
+        <div ref={containerRef} />
+
+        {recaptchaLoadError && (
+          <p className="text-sm text-red-500" role="alert">
+            {recaptchaLoadError}
+          </p>
+        )}
+
+        {recaptchaError && (
+          <p className="text-sm text-red-500" role="alert">
+            {recaptchaError}
+          </p>
+        )}
+      </div>
 
       <p className="text-[11px] text-fg-muted">
         Protected by Google{" "}
@@ -194,7 +226,7 @@ export function ContactForm() {
         >
           Privacy
         </a>{" "}
-        &{" "}
+        &amp;{" "}
         <a
           href="https://policies.google.com/terms"
           target="_blank"
@@ -204,7 +236,6 @@ export function ContactForm() {
           Terms
         </a>
       </p>
-
 
       <motion.button
         whileTap={{ scale: 0.98 }}
@@ -238,6 +269,12 @@ export function ContactForm() {
           )}
         </AnimatePresence>
       </motion.button>
+
+      {status === "error" && !recaptchaError && (
+        <p className="text-sm text-red-500" role="alert">
+          We couldn't send your message. Please try again.
+        </p>
+      )}
     </form>
   );
 }
@@ -267,6 +304,7 @@ function Field({
       >
         {label} {required && <span className="text-brand-500">*</span>}
       </label>
+
       <input
         type={type}
         id={name}
@@ -302,6 +340,7 @@ function SelectField({
       >
         {label}
       </label>
+
       <select
         id={name}
         name={name}
@@ -312,6 +351,7 @@ function SelectField({
         <option value="" className="text-fg-muted">
           Select an option
         </option>
+
         {options.map((opt) => (
           <option key={opt} value={opt} className="text-fg-primary">
             {opt}

@@ -42,41 +42,41 @@ export const CONTACT = {
     phone: "+91 89036 91770",
     location: "Coimbatore, India",
     address: "SF.No 22/2 & 24/4, Site No 39, Anandhapuram, Vadamadurai Kurudampalayam, Coimbatore, Coimbatore North, Tamil Nadu, India, 641017",
-    icon: "/contact-icon/mail.svg",
-    phoneIcon: "/contact-icon/phone.svg",
-    locationIcon: "/contact-icon/location.svg",
+    icon: "/contact-icon/Mail.svg",
+    phoneIcon: "/contact-icon/Phone.svg",
+    locationIcon: "/contact-icon/Location.svg",
   },
   sales: {
     email: "sales@nygrow.co.in",
     phone: "+91 82209 99940",
-    icon: "/contact-icon/mail.svg",
-    phoneIcon: "/contact-icon/phone.svg",
+    icon: "/contact-icon/Mail.svg",
+    phoneIcon: "/contact-icon/Phone.svg",
   },
   careers: {
     email: "careers@nygrow.co.in",
     phone: "+91 90926 06770",
-    icon: "/contact-icon/mail.svg",
-    phoneIcon: "/contact-icon/phone.svg",
+    icon: "/contact-icon/Mail.svg",
+    phoneIcon: "/contact-icon/Phone.svg",
   },
   social: [
     {
       label: "Facebook",
-      icon: "/contact-icon/facebook.svg",
+      icon: "/contact-icon/Facebook.svg",
       url: "https://www.facebook.com/profile.php?id=61579758592523",
     },
     {
       label: "LinkedIn",
-      icon: "/contact-icon/linked in.svg",
+      icon: "/contact-icon/Linked in.svg",
       url: "https://www.linkedin.com/company/nygrow-digital",
     },
     {
       label: "Instagram",
-      icon: "/contact-icon/instagram.svg",
+      icon: "/contact-icon/Instagram.svg",
       url: "https://www.instagram.com/nygrowdigital",
     },
     {
       label: "X",
-      icon: "/contact-icon/twitter.svg",
+      icon: "/contact-icon/Twitter.svg",
       url: "https://x.com/NygrowDigital",
     },
   ],
@@ -151,7 +151,7 @@ export const SERVICES: Service[] = [
     subServices: [
       { title: "Custom Web Application Development", description: "Scalable, secure applications tailored to workflows.", icon: "/icons/Sub-Service/Web-Dev/Web App.svg" },
       { title: "Enterprise Web Application Development", description: "Clean-architecture, high-security applications.", icon: "/icons/Sub-Service/Web-Dev/Enterprise.svg" },
-      { title: "E-Commerce Development", description: "Conversion-driven stores with secure payments.", icon: "/icons/Sub-Service/Web-Dev/E-commerce.svg" },
+      { title: "E-Commerce Development", description: "Conversion-driven stores with secure payments.", icon: "/icons/Sub-Service/Web-Dev/E-Commerce.svg" },
       { title: "CMS Web Development", description: "WordPress, Joomla, Drupal platforms.", icon: "/icons/Sub-Service/Web-Dev/CMS.svg" },
       { title: "Website Design & UI/UX", description: "Visually engaging, accessible interfaces.", icon: "/icons/Sub-Service/Web-Dev/UX.svg" },
       { title: "Landing Page Design", description: "Fast, conversion-optimized campaign pages.", icon: "/icons/Sub-Service/Web-Dev/Landing.svg" },
@@ -183,11 +183,11 @@ export const SERVICES: Service[] = [
     logo: "/icons/Mobile.svg",
     ctaText: "Build My App",
     features: [
-      { text: "Affordable development without compromising quality", icon: "/icons/Features/mobile/Affordable.svg" },
-      { text: "Dedicated app developers and round-the-clock support", icon: "/icons/Features/mobile/Platform.svg" },
-      { text: "Agile delivery with native and cross-platform expertise", icon: "/icons/Features/mobile/Agile.svg" },
-      { text: "App Store Optimization included to maximize reach", icon: "/icons/Features/mobile/App-store.svg" },
-      { text: "Transparent pricing with on-time delivery", icon: "/icons/Features/mobile/Transparent.svg" },
+      { text: "Affordable development without compromising quality", icon: "/icons/Features/Mobile/Affordable.svg" },
+      { text: "Dedicated app developers and round-the-clock support", icon: "/icons/Features/Mobile/Platform.svg" },
+      { text: "Agile delivery with native and cross-platform expertise", icon: "/icons/Features/Mobile/Agile.svg" },
+      { text: "App Store Optimization included to maximize reach", icon: "/icons/Features/Mobile/App-store.svg" },
+      { text: "Transparent pricing with on-time delivery", icon: "/icons/Features/Mobile/Transparent.svg" },
     ],
 
     subServices: [
@@ -314,7 +314,7 @@ export const SERVICES: Service[] = [
     ctaText: "Start AI Project",
     features: [
       { text: "Deep expertise across AI, ML, NLP, computer vision, and generative AI", icon: "/icons/Features/AI-ML/Vision.svg" },
-      { text: "Custom-built systems, not one-size-fits-all models", icon: "/icons/Features/AI-ML/Vision.svg" },
+      { text: "Custom-built systems, not one-size-fits-all models", icon: "/icons/Features/AI-ML/Startups.svg" },
       { text: "Enterprise-grade, secure, scalable architecture", icon: "/icons/Features/AI-ML/Secure.svg" },
       { text: "Agile delivery for faster time-to-market", icon: "/icons/Features/AI-ML/Agile.svg" },
       { text: "End-to-end support from strategy through MLOps", icon: "/icons/Features/AI-ML/Lifecycle.svg" },
@@ -328,7 +328,7 @@ export const SERVICES: Service[] = [
       { title: "Computer Vision", description: "Image recognition, object detection, quality inspection, visual analytics.", icon: "/icons/Sub-Service/AI-ML/ComVision.svg" },
       { title: "Generative AI", description: "Content, image, audio/video generation, and conversational AI.", icon: "/icons/Sub-Service/AI-ML/Generative AI.svg" },
       { title: "AI-Powered Agents & Automation", description: "Customer support bots and back-office RPA.", icon: "/icons/Sub-Service/AI-ML/RPA.svg" },
-      { title: "MLOps & Deployment", description: "Versioning, monitoring, and production-grade scaling.", icon: "/icons/Sub-Service/AI-ML/Mlops.svg" },
+      { title: "MLOps & Deployment", description: "Versioning, monitoring, and production-grade scaling.", icon: "/icons/Sub-Service/AI-ML/MLOps.svg" },
       { title: "AI-Powered Analytics", description: "Predictive models and advanced dashboards.", icon: "/icons/Sub-Service/AI-ML/AI.svg" },
     ],
 
@@ -367,7 +367,7 @@ export const SERVICES: Service[] = [
     ],
     subServices: [
       { title: "Server Setup & Configuration", description: "Dedicated, VPS, hybrid, and cloud environments tailored to your workload and security needs.", icon: "/icons/Sub-Service/Cloud/Server.svg" },
-      { title: "Cloud Hosting (AWS, Azure, Google Cloud)", description: "Scalable, cost-efficient, multi-cloud deployments.", icon: "/icons/Sub-Service/Cloud/hosting.svg" },
+      { title: "Cloud Hosting (AWS, Azure, Google Cloud)", description: "Scalable, cost-efficient, multi-cloud deployments.", icon: "/icons/Sub-Service/Cloud/Hosting.svg" },
       { title: "Server Migration & Data Transfer", description: "Zero-downtime migration with full data integrity.", icon: "/icons/Sub-Service/Cloud/Data Transfer.svg" },
       { title: "Server Security & Monitoring", description: "Firewalls, intrusion detection, DDoS protection, and real-time monitoring.", icon: "/icons/Sub-Service/Cloud/Security.svg" },
       { title: "Performance Optimization", description: "CPU, memory, and storage tuning for lower latency and higher availability.", icon: "/icons/Sub-Service/Cloud/Optimization.svg" },
@@ -574,8 +574,8 @@ export const NYGROW_DIFFERENCE = [
 ];
 
 export const RECAPTCHA = {
-  siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
-} as const;
+  siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "",
+};
 
 export const PARTNERS = [
   { name: "Google Cloud", category: "Cloud" },
